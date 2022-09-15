@@ -27,7 +27,7 @@ function App() {
     const channel = pusher.subscribe("rests");
 
     // listens for a specific action defined on the backend, once action takes place
-    // it runs the code below, lsitens for new restaurant registrations
+    // it runs the code below, listens for new restaurant registrations
     channel.bind("inserted", (data) => {
       console.log("inserted");
       console.log("data on inserted", data);
@@ -44,7 +44,7 @@ function App() {
       getLoggedState();
 
       function getLoggedState() {
-        if (data.result.orderId && data.result.eventType === "newOrder") {
+        if (data.result !== undefined && data.result.orderId && data.result.eventType === "newOrder") {
           axios({
             method: "POST",
             data: {
@@ -62,7 +62,7 @@ function App() {
               console.log("data result rests", data.result);
 
               console.log("new order created");
-              alert("new order recived");
+              
             }
           });
         }
